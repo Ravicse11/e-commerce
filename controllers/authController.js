@@ -216,7 +216,10 @@ export const getOrdersController = async (req, res) => {
     });
   }
 };
-//orders
+
+
+
+// all orders
 export const getAllOrdersController = async (req, res) => {
   try {
     const orders = await orderModel
@@ -237,6 +240,7 @@ export const getAllOrdersController = async (req, res) => {
 
 //order status
 export const orderStatusController = async (req, res) => {
+  
   try {
     const { orderId } = req.params;
     const { status } = req.body;

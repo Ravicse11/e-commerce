@@ -143,7 +143,9 @@ export const deleteProductController = async (req, res) => {
   }
 };
 
-//upate producta
+
+
+//upate product
 export const updateProductController = async (req, res) => {
   try {
     const { name, description, price, category, quantity, shipping } =
@@ -341,6 +343,28 @@ export const braintreeTokenController = async (req, res) => {
     console.log(error);
   }
 };
+//cashpaymentcontroller
+
+export const cashOnDeliveryPaymentController = async (req, res) => {
+  try {
+    const { cart } = req.body;
+    let total = 0;
+    cart.map((i) => {
+      total += i.price;
+    });
+    const order = new orderModel({
+            products: cart,
+            payment: total,
+            buyer: req.user._id,
+          }).save();
+          res.json({ ok: true });
+        } 
+      
+  catch (error) {
+    console.log(error);
+  }
+};
+
 
 //payment
 export const brainTreePaymentController = async (req, res) => {
